@@ -14,35 +14,39 @@
       </div>
     </div>
   </div>
-  <div>
-    <AssetDetail :id="2"/>
-  </div>
 </template>
 
 <script>
-import dummyData from './DummyData';
-import AssetDetail from './AssetDetail.vue';
+//import dummyData from './DummyData';
+//import AssetDetail from './AssetDetail.vue';
 
 export default {
-  components: {
-    AssetDetail
-  },
-  data() {
-    return {
-      assets: []
-    };
+  // components: {
+  //   AssetDetail
+  // },
+  // data() {
+  //   return {
+  //     assets: []
+  //   };
+  // },
+  computed:{
+    assets(){
+      return this.$store.state.items;
+    }
   },
   created() {
     // Fetch data (e.g., from an API)
-    this.fetchData();
+    // this.fetchData();
+    this.$store.dispatch('fetchData');    
   },
-  methods: {
-    fetchData() {
-      // Simulate fetching data (replace with actual API call)
-      // Populate this.items with the fetched data
-      this.assets = dummyData.data;
-    },
-  },
+  // methods: {
+  //   fetchData() {
+  //     // Simulate fetching data (replace with actual API call)
+  //     // Populate this.items with the fetched data
+  //     //this.assets = dummyData.data;
+  //     this.$store.dispatch('fetchData');
+  //   },
+  // },
   // so that the assets can be injected in another components
   provide() {
     return { assets: this.assets }

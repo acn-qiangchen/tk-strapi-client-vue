@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import dummyData from './DummyData';
+import dummyData from '../components/DummyData';
 
 export default createStore({
   state: {
@@ -14,7 +14,7 @@ export default createStore({
     async fetchData({ commit }) {
       // Simulate fetching data (replace with actual API call)
       // Populate state.items with the fetched data
-      commit('setItems', dummyData);
+      commit('setItems', dummyData.data);
     },
   },
 });
