@@ -33,26 +33,28 @@
 </template>
 
 <script>
-import dummyData from './DummyData';
+// import dummyData from './DummyData';
 
 
 export default {
-  // components: {
-  //   Vue3Html2pdf
-  // },
+  props: ['id'],
+  inject:['assets'],
   methods: {
     generatePDF() {
       this.$refs.html2Pdf.generatePdf()
     }
   },
-  data() {
-    return {
-      item: {},
-    };
-  },
-  created() {
-    const id = Number(this.$route.params.id);
-    this.item = dummyData.data.find((item) => item.id === id);
+  // data() {
+  //   return {
+  //     item: this.$route.params.item,
+  //   };
+  // },
+  computed:{
+    item() {
+      // Retrieve item details based on this.id
+      console.log(this.id);
+      console.log(this.assets)
+      return this.assets.find((item) => item.id === parseInt(this.id));}
   },
 };
 </script>

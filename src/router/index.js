@@ -13,7 +13,8 @@ const router = createRouter({
     {
       path: '/asset/:id',
       name: 'asset',
-      component: assetDetail
+      component: assetDetail,
+      props: true
     }
   ]
 })

@@ -7,22 +7,45 @@
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
             <p class="card-text">{{ item.position }}</p>
-            <router-link :to="{ name: 'asset', params: { id: item.id } }" class="btn btn-primary">View Details</router-link>
+            <router-link :to="{ name: 'asset', params: { id: item.id } }" class="btn btn-primary">View
+              Details</router-link>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div>
+    <AssetDetail :id="2"/>
+  </div>
 </template>
 
 <script>
 import dummyData from './DummyData';
+import AssetDetail from './AssetDetail.vue';
 
 export default {
+  components: {
+    AssetDetail
+  },
   data() {
     return {
-      assets: dummyData.data
+      assets: []
     };
+  },
+  created() {
+    // Fetch data (e.g., from an API)
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      // Simulate fetching data (replace with actual API call)
+      // Populate this.items with the fetched data
+      this.assets = dummyData.data;
+    },
+  },
+  // so that the assets can be injected in another components
+  provide() {
+    return { assets: this.assets }
   },
 };
 </script>
