@@ -3,9 +3,14 @@
   <div class="container">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{ item.name }}</h5>
-        <p class="card-text">Position: {{ item.position }}</p>
-        <p class="card-text">Number: {{ item.number }}</p>
+        <h5 class="card-title">{{ item.Name }}</h5>
+        <p class="card-text">ShortDescription: {{ item.ShortDescription }}</p>
+        <p class="card-text">Contact: {{ item.Contact }}</p>
+        <p class="card-text">ReleaseNote: {{ item.ReleaseNote }}</p>
+        <p class="card-text">Contact: {{ item.Contact }}</p>
+        <p class="card-text">
+          <a :href="item.AssetFile.data.attributes.url">Download</a>
+        </p>
       </div>
     </div>
     <button type="button" class="btn btn-primary" @click="generatePDF">print</button>
@@ -34,11 +39,10 @@
 
 <script>
 // import dummyData from './DummyData';
-
+import {useAssetStore} from '@/store/assetStore'
 
 export default {
   props: ['id'],
-  inject: ['assets'],
   methods: {
     generatePDF() {
       this.$refs.html2Pdf.generatePdf()
@@ -50,9 +54,11 @@ export default {
   //   };
   // },
   computed: {
-    item() {
-      // Retrieve item details based on this.id
-      return this.$store.state.items.find((item) => item.id === parseInt(this.id));
+    item() { 
+      const dataStore = useAssetStore();
+      const data = dataStore.getAllData.find((item) => item.id === parseInt(this.id));
+      console.log(data);
+      return data.attributes;
     }
   },
 };
