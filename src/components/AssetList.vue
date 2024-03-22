@@ -19,7 +19,6 @@
 <script>
 import {useAssetStore} from '@/store/assetStore'
 import axios from 'axios'
-//import { storeToRefs } from 'pinia'
 
 export default {
   data(){
@@ -27,11 +26,6 @@ export default {
       assets:[]
     }
   },
-  // computed:{
-  //   dataStore(){
-  //     return useAssetStore();
-  //   }
-  // },
   methods: {
     async getData(){
       const url = 'http://54.150.252.219:8080/api/ac-assets?populate=*';
