@@ -6,7 +6,9 @@
           <img alt="Vue logo" class="logo" src="@/assets/ACTS.jpg" width="40" height="40" />
           <div class="card-body">
             <h5 class="card-title">{{ item.attributes.Name }}</h5>
-            <p class="card-text">{{ item.attributes.ShortDescription }}</p>
+            <p class="card-text">
+              {{ item.attributes.ShortDescription }}
+            </p>
             <router-link :to="{ name: 'asset', params: { id: item.id } }" class="btn btn-primary">View
               Details</router-link>
           </div>
@@ -40,7 +42,7 @@ export default {
     }
   },
 
-  async created() {
+  async mounted() {
     const dataStore = useAssetStore();
     dataStore.initStore(await this.getData());
     this.assets = dataStore.getAllData;
